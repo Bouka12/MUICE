@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+      <img id="metal-normal"
+           src="https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/TCom_Various_AcousticFoam_header.jpg?v=1710950072185">
+      <img id="brick-texture"
+           src= "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/texture.jpg?v=1710948640274">
+      <img id="brick-normal"
+           src="https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/luz.jpeg?v=1710949835329">
+      </a-assets>
+      <a-box position="-2 0.5 -9" scale="1 1 1" 
+             height="4" width="4" depth = "4" 
+             color="FFFFFF"
+             repeat = "1 1"
+             src = "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/texture.jpg?v=1710948640274"
+             normal-map = "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/TCom_Metal_AluminumBrushed_header.jpg?v=1710950884424"
+             normal-texture-repeat = "1 1"
+             normal-scale = "1 -1"
+             roughness = "0.3"
+             side = "double"
+             
+             >    </a-box>
+            <a-box position="-6 0.5 -9" scale="1 1 1" 
+             height="4" width="4" depth = "4" 
+             color="FFFFFF"
+             repeat = "1 1"
+             src = "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/TCom_Brick_CinderblocksPainted2_512_normal.jpg?v=1710949546849"
+             normal-map = "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/TCom_Metal_AluminumBrushed_header.jpg?v=1710950884424"
+             normal-texture-repeat = "1 1"
+             normal-scale = "1 1"
+             roughness = "0.3"
+              side="double"
+             
+             >    </a-box>
+      <a-sphere position= "-7 1 -9" color ="#FF0000"
+            normal-map = "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/TCom_Metal_AluminumBrushed_header.jpg?v=1710950884424"
+            normal-map = "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/TCom_Metal_AluminumBrushed_header.jpg?v=1710950884424"
+            normal-scale = "1"
+            opacity = "0.5"
+            roughness = "0.2"
+                
+                ></a-sphere>
+            <a-sphere position= "-2 1 -9" color ="blue"
+            normal-map = "https://cdn.glitch.global/80c1ca1d-4e82-41e4-a9c3-8d996df9232d/TCom_Metal_AluminumBrushed_header.jpg?v=1710950884424"
+            normal-scale = "1"
+            opacity = "0.5"
+            roughness = "0.2"
+            ></a-sphere>
+
+
+    </a-scene>
+  </body>
+</html>

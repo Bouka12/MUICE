@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    
+  </head>
+  <body>
+    <a-scene>
+      <a-assets> 
+        <img id="texture"
+        src="ImageTextures/TexturesCom_Metal_Corrugated_1K_albedo.jpg">
+        <img id="metal"
+        src = "ImageTextures/TexturesCom_Metal_Corrugated_1K_normal.jpg">
+        <img id="wall-brick"
+        src = "ImageTextures/TexturesCom_Wall_BrickPlain3_2.5x2.5_B_1K_albedo.jpg">
+        <img id="brick-normal"
+        src="ImageTextures/TexturesCom_Wall_BrickPlain3_2.5x2.5_B_1K_normal.jpg">
+      </a-assets>
+      <a-box 
+      position="-2 1.5 -9" 
+      scale="1 1 1" 
+      height="4" width="4" depth = "4" 
+      src = "#texture"
+      repeat = "1 1"
+      normal-map = "#metal"
+      normal-texture-repeat="1 1" normal-scale="1 1"
+      roughness = "0.7"
+      color="#FFFFFF"
+      >    </a-box>
+      <a-box 
+      position="2 1.5 -9" 
+      scale="1 1 1" 
+      height="4" width="4" depth = "4" 
+      src = "#wall-brick"
+      repeat="2 2"
+      normal-map = "#brick-normal"
+      normal-texture-repeat = "2 2"
+      normal-scale = "1 -1"
+      roughness = "0.3"
+      color="#FFFFFF"
+
+      >    </a-box>
+
+      <a-box 
+      position="-12 1.5 -9" 
+      scale="1 1 1" 
+      height="4" width="4" depth = "4"
+      src = "#texture"
+      repeat = "1 1"
+      normal-map = "#metal"
+      normal-texture-repeat="1 1" normal-scale="1 1"
+      roughness = "0.7"
+      color="#FFFFFF"
+      >    </a-box>
+      <a-box 
+      position="-8 1.5 -9" 
+      scale="1 1 1" 
+      height="4" width="4" depth = "4" 
+      src = "#wall-brick"
+      color="#FFFFFF"
+      >    </a-box>
+        
+
+    </a-scene>
+  </body>
+</html>
