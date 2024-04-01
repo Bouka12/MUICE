@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      
+      <a-box position="0 1 -7" rotation="0 90 90" width="4" height="2" depth="0.2" color = "#689F38">
+        <a-circle position ="2 0 0" rotation="90 0 0" radius="1" color = "#333333" side="double"></a-circle>
+        <a-circle position ="-2 0 0" rotation="90 0 0" radius="1" color = "#FFC107" side="double"></a-circle>  
+      </a-box>
+      
+  
+      <a-cylinder color="white" rotation ="-90 90 -90" position = "0 1 -10" height="2" radius="7"  segments-radial="6" side ="double"></a-cylinder>
+      <a-cylinder color="black" rotation ="-90 90 -90" position = "0 1 -15" height="2" radius="12"  segments-radial="6" side ="double"></a-cylinder>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
