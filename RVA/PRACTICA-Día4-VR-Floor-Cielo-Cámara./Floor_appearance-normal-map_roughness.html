@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+    <a-assets>
+        <img id="floor_map" src = "ImageTextures/TexturesCom_CrackedPavementA_1K_normal.jpg" >
+        <img id="floor-tex0" src = "ImageTextures/TexturesCom_CrackedPavementA_1K_albedo.jpg">
+        <img id="floor-texture1" src ="ImageTextures/TexturesCom_CrackedPavementA_1K_albedo.jpg">
+        <img id="floor-texture2" src="ImageTextures/TexturesCom_Pavement_CobblestoneOld_1K_albedo.jpg">
+      </a-assets>
+      <a-plane color="#FFFFFF" src="#floor-tex0" repeat="5 5" normal-texture="5 5" normal-map="#floor-map" roughness="0.8" rotation="-90 0 0" scale="10 10 1" ></a-plane>
+
+    </a-scene>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+    <a-assets>
+        <img id="floor-tex0" src = "ImageTextures/TexturesCom_CrackedPavementA_1K_albedo.jpg">
+        <img id="floor-texture1" src ="ImageTextures/TexturesCom_CrackedPavementA_1K_albedo.jpg">
+        <img id="floor-texture2" src="ImageTextures/TexturesCom_Pavement_CobblestoneOld_1K_albedo.jpg">
+        <img id="family" src = "ImageTextures/OEMBZ60.jpg">
+      </a-assets>
+      <a-box height="2" depth="4" position="2 2 0" color="green"></a-box>
+      <a-cylinder position="-2 2 0" radius="0.5" color="red"></a-cylinder>
+      <a-plane color="#FFFFFF" src ="#floor-texture1" rotation="-90 0 0" scale="10 10 1" ></a-plane>
+      <a-entity position="0 5 5" ><a-camera active="true"></a-camera></a-entity>
+      <a-image position="0 1 0" src ="#family" scale="2 2 1"></a-image>
+      <a-entity position="0 0 5" ><a-camera active="false"></a-camera></a-entity>
+
+    
+    </a-scene>
+  </body>
+</html>

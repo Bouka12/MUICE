@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+    <a-assets>
+        <img id="cloudy-sky" src = "ImageTextures/TexturesCom_Skies0389_1_M.jpg" >
+        <img id="clear-sky" src = "ImageTextures/sunny-sky_2048x1365.jpg">
+     
+        <img id="floor_map" src = "ImageTextures/TexturesCom_CrackedPavementA_1K_normal.jpg" >
+        <img id="floor-tex0" src = "ImageTextures/TexturesCom_CrackedPavementA_1K_albedo.jpg">
+        <img id="floor-texture1" src ="ImageTextures/TexturesCom_CrackedPavementA_1K_albedo.jpg">
+        <img id="floor-texture2" src="ImageTextures/TexturesCom_Pavement_CobblestoneOld_1K_albedo.jpg">
+     
+      </a-assets>
+      <a-sky src="#cloudy-sky" rotation="0 -90 0"> </a-sky>
+      <a-plane color="#FFFFFF" src="#floor-tex0" repeat="5000 5000" normal-texture="5000 5000" normal-map="#floor-texture2" roughness="0.2" rotation="-90 0 0" scale="10000 10000 1" ></a-plane>
+
+    </a-scene>
+  </body>
+</html>
