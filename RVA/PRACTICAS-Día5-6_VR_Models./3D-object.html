@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+        <a-assets>     <a-assets-item id="village" src="castle_village_scene/scene.gltf">
+        </a-assets-item>
+      <a-assets-item id="catapult-o" src="catapult/scene.gltf"></a-assets-item>
+      <a-assets-item id="catapult-" src="catapultacatapult/source/catapulta.obj"></a-assets-item>
+  
+    </a-assets>
+
+        <a-entity gltf-model="#village"></a-entity>
+        <a-entity obj-model="#catapult-o"></a-entity>
+        <a-entity obj-model="#catapult-m" position="-10 0 50" scale="1.5 1.5 1.5"></a-entity>
+
+        <a-camera position="-3 0 0"></a-camera>
+    </a-scene>
+  </body>
+</html>
