@@ -1,0 +1,4 @@
+/home/bk/Downloads/CAP-Practica1/build/CMakeFiles/practica1_vectors.dir
+/home/bk/Downloads/CAP-Practica1/build/CMakeFiles/practica1_matrices.dir
+/home/bk/Downloads/CAP-Practica1/build/CMakeFiles/edit_cache.dir
+/home/bk/Downloads/CAP-Practica1/build/CMakeFiles/rebuild_cache.dir
