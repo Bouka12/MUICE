@@ -1,0 +1,1 @@
+/usr/bin/g++ -ggdb3 -O0 -Wall CMakeFiles/practica1_matrices.dir/practica1_matrices.cpp.o -o practica1_matrices 

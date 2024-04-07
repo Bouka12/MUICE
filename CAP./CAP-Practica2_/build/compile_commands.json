@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/bk/Downloads/CAP-Practica1/build",
+  "command": "/usr/bin/g++   -ggdb3 -O0 -Wall -std=gnu++11 -o CMakeFiles/practica1_vectors.dir/practica1_vectors.cpp.o -c /home/bk/Downloads/CAP-Practica1/practica1_vectors.cpp",
+  "file": "/home/bk/Downloads/CAP-Practica1/practica1_vectors.cpp",
+  "output": "CMakeFiles/practica1_vectors.dir/practica1_vectors.cpp.o"
+},
+{
+  "directory": "/home/bk/Downloads/CAP-Practica1/build",
+  "command": "/usr/bin/g++   -ggdb3 -O0 -Wall -std=gnu++11 -o CMakeFiles/practica1_matrices.dir/practica1_matrices.cpp.o -c /home/bk/Downloads/CAP-Practica1/practica1_matrices.cpp",
+  "file": "/home/bk/Downloads/CAP-Practica1/practica1_matrices.cpp",
+  "output": "CMakeFiles/practica1_matrices.dir/practica1_matrices.cpp.o"
+}
+]

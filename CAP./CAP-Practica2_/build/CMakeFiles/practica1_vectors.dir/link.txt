@@ -1,0 +1,1 @@
+/usr/bin/g++ -ggdb3 -O0 -Wall CMakeFiles/practica1_vectors.dir/practica1_vectors.cpp.o -o practica1_vectors 
