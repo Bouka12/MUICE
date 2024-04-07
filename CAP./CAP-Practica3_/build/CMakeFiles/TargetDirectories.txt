@@ -1,0 +1,7 @@
+/home/bk/Downloads/CAP-Practica3_/build/CMakeFiles/practica3_Numero-e-Identificador-de-los-Hilos.dir
+/home/bk/Downloads/CAP-Practica3_/build/CMakeFiles/practica3_Variables_threadprivate.dir
+/home/bk/Downloads/CAP-Practica3_/build/CMakeFiles/practica3_Construccion.dir
+/home/bk/Downloads/CAP-Practica3_/build/CMakeFiles/practica3_Construccion_2.dir
+/home/bk/Downloads/CAP-Practica3_/build/CMakeFiles/practica3_paraleliza_practica1.dir
+/home/bk/Downloads/CAP-Practica3_/build/CMakeFiles/edit_cache.dir
+/home/bk/Downloads/CAP-Practica3_/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/g++  -fopenmp -ggdb3 -O0 -Wall CMakeFiles/practica3_Construccion_2.dir/practica3_Construccion_2.cpp.o -o practica3_Construccion_2 

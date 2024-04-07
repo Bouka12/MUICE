@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/bk/Downloads/CAP-Practica3_/build",
+  "command": "/usr/bin/g++    -fopenmp -ggdb3 -O0 -Wall -std=gnu++11 -o CMakeFiles/practica3_Numero-e-Identificador-de-los-Hilos.dir/practica3_Numero-e-Identificador-de-los-Hilos.cpp.o -c /home/bk/Downloads/CAP-Practica3_/practica3_Numero-e-Identificador-de-los-Hilos.cpp",
+  "file": "/home/bk/Downloads/CAP-Practica3_/practica3_Numero-e-Identificador-de-los-Hilos.cpp",
+  "output": "CMakeFiles/practica3_Numero-e-Identificador-de-los-Hilos.dir/practica3_Numero-e-Identificador-de-los-Hilos.cpp.o"
+},
+{
+  "directory": "/home/bk/Downloads/CAP-Practica3_/build",
+  "command": "/usr/bin/g++    -fopenmp -ggdb3 -O0 -Wall -std=gnu++11 -o CMakeFiles/practica3_Variables_threadprivate.dir/practica3_Variables_threadprivate.cpp.o -c /home/bk/Downloads/CAP-Practica3_/practica3_Variables_threadprivate.cpp",
+  "file": "/home/bk/Downloads/CAP-Practica3_/practica3_Variables_threadprivate.cpp",
+  "output": "CMakeFiles/practica3_Variables_threadprivate.dir/practica3_Variables_threadprivate.cpp.o"
+},
+{
+  "directory": "/home/bk/Downloads/CAP-Practica3_/build",
+  "command": "/usr/bin/g++    -fopenmp -ggdb3 -O0 -Wall -std=gnu++11 -o CMakeFiles/practica3_Construccion.dir/practica3_Construccion.cpp.o -c /home/bk/Downloads/CAP-Practica3_/practica3_Construccion.cpp",
+  "file": "/home/bk/Downloads/CAP-Practica3_/practica3_Construccion.cpp",
+  "output": "CMakeFiles/practica3_Construccion.dir/practica3_Construccion.cpp.o"
+},
+{
+  "directory": "/home/bk/Downloads/CAP-Practica3_/build",
+  "command": "/usr/bin/g++    -fopenmp -ggdb3 -O0 -Wall -std=gnu++11 -o CMakeFiles/practica3_Construccion_2.dir/practica3_Construccion_2.cpp.o -c /home/bk/Downloads/CAP-Practica3_/practica3_Construccion_2.cpp",
+  "file": "/home/bk/Downloads/CAP-Practica3_/practica3_Construccion_2.cpp",
+  "output": "CMakeFiles/practica3_Construccion_2.dir/practica3_Construccion_2.cpp.o"
+},
+{
+  "directory": "/home/bk/Downloads/CAP-Practica3_/build",
+  "command": "/usr/bin/g++    -fopenmp -ggdb3 -O0 -Wall -std=gnu++11 -o CMakeFiles/practica3_paraleliza_practica1.dir/practica3_paraleliza_practica1.cpp.o -c /home/bk/Downloads/CAP-Practica3_/practica3_paraleliza_practica1.cpp",
+  "file": "/home/bk/Downloads/CAP-Practica3_/practica3_paraleliza_practica1.cpp",
+  "output": "CMakeFiles/practica3_paraleliza_practica1.dir/practica3_paraleliza_practica1.cpp.o"
+}
+]

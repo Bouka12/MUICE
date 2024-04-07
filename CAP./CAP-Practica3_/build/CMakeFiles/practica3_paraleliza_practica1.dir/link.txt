@@ -1,0 +1,1 @@
+/usr/bin/g++  -fopenmp -ggdb3 -O0 -Wall CMakeFiles/practica3_paraleliza_practica1.dir/practica3_paraleliza_practica1.cpp.o -o practica3_paraleliza_practica1 

@@ -1,0 +1,1 @@
+/usr/bin/g++  -fopenmp -ggdb3 -O0 -Wall "CMakeFiles/practica3_Numero-e-Identificador-de-los-Hilos.dir/practica3_Numero-e-Identificador-de-los-Hilos.cpp.o" -o practica3_Numero-e-Identificador-de-los-Hilos 

@@ -1,0 +1,1 @@
+/usr/bin/g++  -fopenmp -ggdb3 -O0 -Wall CMakeFiles/practica3_Variables_threadprivate.dir/practica3_Variables_threadprivate.cpp.o -o practica3_Variables_threadprivate 
