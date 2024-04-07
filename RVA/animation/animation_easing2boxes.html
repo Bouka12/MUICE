@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+        <a-assets>     <img id="floor" src="ImageTextures/TexturesCom_Marble_Checkerboard2_1K_albedo.jpg"></a-assets>
+
+        <a-plane color="#FFFFFF" src="#floor"  rotation="-90 0 0" scale=" 5 5 0"  ></a-plane>
+      <a-box color="#AA0000" position="0 0.5 0" animation="property:rotation; to:0 360 0; dur:5000; loop:12; easing:linear"></a-box>
+    <a-entity position="0 0 8"><a-camera></a-camera></a-entity>  
+      <a-entity><a-box color="green" position="0 4 0" animation="property:rotation; to:0 360 0; dur:5000; loop:true; easing:linear"></a-box></a-entity>
+  </a-scene>
+  </body>
+</html>
