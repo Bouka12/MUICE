@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- Asset Management System-->
+      <a-assets>
+          <img id="floor" src="ImageTextures/TexturesCom_VinylChecker_1K_albedo.jpg">
+          <img id="hollow-knight" src="Images/hollow-knight-i6-1024x768.jpg">
+          <a-asset-item id="room" src="Models/boy_room/scene.gltf"></a-asset-item>
+          <a-asset-item id="catapulta" src="Models/catapult/scene.gltf"></a-asset-item>
+      </a-assets>
+      <!-- Ambient light -->
+      <!--<a-entity light="type:ambient; color:#BBB"></a-entity>-->
+      <!-- Directional light -->
+      <!--<a-entity light="type:directional; color:#FFFFFF" position="-0.5 1 1"></a-entity>-->
+      <!-- Custom Light - Ambient light -->
+      <a-entity light="type:ambient;intensity:0.2"></a-entity>
+      <!-- Custom light - Point light -->
+      <a-entity light="type:point;color:#FF0000;intensity:0.8;distance:100;castShadow:true" position="0 4 3" animation="property:light.intensity; from:0.8 to:0; loop:true; dir:alternate; dur:5000"></a-entity>
+      
+      <!-- Sky -->
+      <a-sky color="#212121"></a-sky>
+      
+      <!-- Ground -->
+      <a-plane src="#floor" rotation="-90 0 0" scale="1000 1000 1" repeat="100 100" shadow="receive:true"></a-plane>
+      <!-- Camera -->
+      <a-entity position="0 0 5"><a-camera></a-camera></a-entity>
+      <!-- Room -->
+      <!--<a-entity scale="0.05 0.05 0.05" gltf-model="#room" shadow="receive:true"></a-entity>-->
+      <!-- Catapult -->
+      <a-entity id="catap-entity" scale="0.3 0.3 0.3" gltf-model="#catapulta" shadow="cast:true" animation="property:position; to:10 0 0; loop:true; dir:alternate; dur:5000" shadow="cast:true"></a-entity>
+      <!--Image -->
+      <a-image src="#hollow-knight" position="-2 2.5 2.49" ></a-image>
+      <!-- Light grey panel -->
+      <!--<a-box color="#E0E0E0" scale="5 0.1 5" position="0 5 0" shadow="cast:true"></a-box>-->
+      <!-- Yellow box -->
+      <a-box id="yellow-box" color="#FFEB3B" scale="0.5 0.5 0.5" position="5 2 0" animation="property:rotation; to:0 360 0; loop:true; dur:5000; easing:linear" shadow="cast:true">
+      </a-box>
+      <!-- Orange box -->
+      <a-box id="orange-box" color="#FF5722" scale="0.5 0.5 0.5" position="2 2 0" animation="property:rotation; to:0 360 0; loop:true; dur:5000; easing:linear" shadow="cast:true">
+      </a-box>
+      <!-- Custom light - Spot -->
+      <a-entity light="type:spot;target:#catap-entity;angle:70;color:#C40070;penumbra:0.1;castShadow:true" position="0 3 0" ></a-entity>
+    </a-scene>
+  </body>
+</html>
