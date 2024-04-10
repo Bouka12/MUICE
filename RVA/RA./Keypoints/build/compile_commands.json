@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/bk/Downloads/RA-Tarea/task2_moodle/build",
+  "command": "/usr/bin/g++  -isystem /usr/include/opencv4 -std=c++11 -g -std=gnu++11 -o CMakeFiles/kps.dir/kps.cpp.o -c /home/bk/Downloads/RA-Tarea/task2_moodle/kps.cpp",
+  "file": "/home/bk/Downloads/RA-Tarea/task2_moodle/kps.cpp",
+  "output": "CMakeFiles/kps.dir/kps.cpp.o"
+},
+{
+  "directory": "/home/bk/Downloads/RA-Tarea/task2_moodle/build",
+  "command": "/usr/bin/g++  -isystem /usr/include/opencv4 -std=c++11 -g -std=gnu++11 -o CMakeFiles/kps.dir/rva.cpp.o -c /home/bk/Downloads/RA-Tarea/task2_moodle/rva.cpp",
+  "file": "/home/bk/Downloads/RA-Tarea/task2_moodle/rva.cpp",
+  "output": "CMakeFiles/kps.dir/rva.cpp.o"
+}
+]
