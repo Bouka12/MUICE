@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/bk/Downloads/RA-Tarea/task1_moodle/build",
+  "command": "/usr/bin/g++  -isystem /usr/include/opencv4 -std=c++11 -g -std=gnu++11 -o CMakeFiles/homog.dir/homog.cpp.o -c /home/bk/Downloads/RA-Tarea/task1_moodle/homog.cpp",
+  "file": "/home/bk/Downloads/RA-Tarea/task1_moodle/homog.cpp",
+  "output": "CMakeFiles/homog.dir/homog.cpp.o"
+},
+{
+  "directory": "/home/bk/Downloads/RA-Tarea/task1_moodle/build",
+  "command": "/usr/bin/g++  -isystem /usr/include/opencv4 -std=c++11 -g -std=gnu++11 -o CMakeFiles/homog.dir/rva.cpp.o -c /home/bk/Downloads/RA-Tarea/task1_moodle/rva.cpp",
+  "file": "/home/bk/Downloads/RA-Tarea/task1_moodle/rva.cpp",
+  "output": "CMakeFiles/homog.dir/rva.cpp.o"
+}
+]

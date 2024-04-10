@@ -1,0 +1,3 @@
+/home/bk/Downloads/RA-Tarea/task1_moodle/build/CMakeFiles/homog.dir
+/home/bk/Downloads/RA-Tarea/task1_moodle/build/CMakeFiles/edit_cache.dir
+/home/bk/Downloads/RA-Tarea/task1_moodle/build/CMakeFiles/rebuild_cache.dir
