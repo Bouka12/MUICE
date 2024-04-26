@@ -1,0 +1,223 @@
+
+
+> with(Dataset, cor.test(Abateria, RDF, alternative="two.sided", method="pearson"))
+
+	Pearson's product-moment correlation
+
+data:  Abateria and RDF
+t = 12.841, df = 363, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.4840222 0.6256590
+sample estimates:
+      cor 
+0.5589036 
+
+
+> RegModel.5 <- lm(Abateria~NHL+RD+Tm, data=Dataset)
+
+> summary(RegModel.5)
+
+Call:
+lm(formula = Abateria ~ NHL + RD + Tm, data = Dataset)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.06213 -0.75489  0.04646  0.77219  2.78219 
+
+Coefficients:
+            Estimate Std. Error t value   Pr(>|t|)    
+(Intercept)  1.39490    0.65596   2.127     0.0341 *  
+NHL          0.43302    0.09025   4.798 0.00000235 ***
+RD           0.25812    0.05346   4.828 0.00000204 ***
+Tm           0.11047    0.02772   3.985 0.00008151 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.024 on 361 degrees of freedom
+Multiple R-squared:  0.8136,	Adjusted R-squared:  0.812 
+F-statistic: 525.2 on 3 and 361 DF,  p-value: < 2.2e-16
+
+
+> RegModelR2 <- lm(Abateria~ NHL + RD + Tm -1, data=Dataset)
+
+> summary(RegModelR2)
+
+Call:
+lm(formula = Abateria ~ NHL + RD + Tm - 1, data = Dataset)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.10020 -0.74021  0.02213  0.74681  2.80577 
+
+Coefficients:
+    Estimate Std. Error t value  Pr(>|t|)    
+NHL  0.61890    0.02256  27.438   < 2e-16 ***
+RD   0.21455    0.04962   4.324 0.0000199 ***
+Tm   0.07304    0.02152   3.395  0.000763 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.029 on 362 degrees of freedom
+Multiple R-squared:  0.9902,	Adjusted R-squared:  0.9901 
+F-statistic: 1.218e+04 on 3 and 362 DF,  p-value: < 2.2e-16
+
+
+> RegModel.6 <- lm(Abateria~DJ+HR+NHL+RD+RDF+RG+Tm+Vv, data=Dataset)
+
+> summary(RegModel.6)
+
+Call:
+lm(formula = Abateria ~ DJ + HR + NHL + RD + RDF + RG + Tm + 
+    Vv, data = Dataset)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.10916 -0.80001  0.01889  0.71471  2.71586 
+
+Coefficients: (1 not defined because of singularities)
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -2.6370769  2.2963284  -1.148 0.251577    
+DJ          -0.0008019  0.0007179  -1.117 0.264693    
+HR           0.0425924  0.0211711   2.012 0.044990 *  
+NHL          0.4538440  0.1422135   3.191 0.001542 ** 
+RD           0.2511424  0.2125808   1.181 0.238231    
+RDF         -0.2349994  0.5097544  -0.461 0.645076    
+RG           0.1483829  0.3365357   0.441 0.659543    
+Tm           0.1667889  0.0427813   3.899 0.000116 ***
+Vv                  NA         NA      NA       NA    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.022 on 357 degrees of freedom
+Multiple R-squared:  0.8164,	Adjusted R-squared:  0.8128 
+F-statistic: 226.8 on 7 and 357 DF,  p-value: < 2.2e-16
+
+
+> numSummary(Dataset[,"Tm", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+     mean       sd IQR 0% 25% 50% 75% 100%   n
+ 18.11781 6.446725  12  9  12  17  24   29 365
+
+> normalityTest(~Abateria, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  Abateria
+W = 0.97912, p-value = 0.00003919
+
+
+> numSummary(Dataset[,"Abateria", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,
++   .75,1))
+     mean       sd   IQR    0%   25%    50%    75%   100%   n
+ 10.07356 2.361623 3.733 4.993 8.224 10.127 11.957 15.019 365
+
+> numSummary(Dataset[,"RG", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+     mean       sd IQR  0% 25% 50% 75% 100%   n
+ 4.888493 2.022953 3.9 1.6   3 4.9 6.9    8 365
+
+> numSummary(Dataset[,"RDF", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+    mean        sd IQR  0% 25% 50% 75% 100%   n
+ 1.86274 0.4346694 0.6 1.2 1.5 1.9 2.1    3 365
+
+> RegModel.7 <- lm(Abateria~NHL, data=Dataset)
+
+> summary(RegModel.7)
+
+Call:
+lm(formula = Abateria ~ NHL, data = Dataset)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.02231 -0.80603  0.02459  0.75297  2.66635 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -2.64712    0.35353  -7.488 5.37e-13 ***
+NHL          1.03248    0.02831  36.464  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.095 on 363 degrees of freedom
+Multiple R-squared:  0.7855,	Adjusted R-squared:  0.7849 
+F-statistic:  1330 on 1 and 363 DF,  p-value: < 2.2e-16
+
+
+> with(Dataset, cor.test(Abateria, HR, alternative="two.sided", method="pearson"))
+
+	Pearson's product-moment correlation
+
+data:  Abateria and HR
+t = -34.3, df = 363, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.8964002 -0.8475986
+sample estimates:
+      cor 
+-0.874189 
+
+
+> with(Dataset, cor.test(HR, NHL, alternative="two.sided", method="pearson"))
+
+	Pearson's product-moment correlation
+
+data:  HR and NHL
+t = -55.294, df = 363, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.9553790 -0.9333839
+sample estimates:
+       cor 
+-0.9454488 
+
+
+> with(Dataset, cor.test(DJ, RD, alternative="two.sided", method="pearson"))
+
+	Pearson's product-moment correlation
+
+data:  DJ and RD
+t = -1.5945, df = 363, p-value = 0.1117
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.18446775  0.01942048
+sample estimates:
+        cor 
+-0.08339635 
+
+
+> with(Dataset, cor.test(RD, Tm, alternative="two.sided", method="pearson"))
+
+	Pearson's product-moment correlation
+
+data:  RD and Tm
+t = 36.913, df = 363, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.8648504 0.9084016
+sample estimates:
+      cor 
+0.8886123 
+
+
+> with(Dataset, cor.test(RDF, RG, alternative="two.sided", method="pearson"))
+
+	Pearson's product-moment correlation
+
+data:  RDF and RG
+t = 20.95, df = 363, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.6895296 0.7830029
+sample estimates:
+      cor 
+0.7398155 
+
+
+> library(HH, pos=4)
+
+> load("C:/Users/BOUKA/Downloads/Datos_Radiacion_2.txt", header=TRUE, stringsAsFactors=TRUE, sep="\t", na.strings="NA", dec=",", strip.white=TRUE)
+
+> powerTransform(Dataset[,"Abateria"],start=NULL)
+Estimated transformation parameter 
+Dataset[, "Abateria"] 
+            0.6884334 
+
