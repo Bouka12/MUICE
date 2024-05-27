@@ -1,0 +1,753 @@
+<!-- R Commander Markdown Template -->
+
+Replace with Main Title
+=======================
+
+### BOUKA
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# include this code chunk as-is to set options
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+```{r}
+Dataset <- readXL("C:/Users/BOUKA/OneDrive/Bureau/MUICE/AW/Chart-Studio/student+performance/student/mat.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="student-mat", stringsAsFactors=TRUE)
+```
+
+
+### Summarize Data Set: Dataset
+```{r}
+summary(Dataset)
+```
+
+
+```{r}
+library(abind, pos=16)
+```
+
+
+```{r}
+library(e1071, pos=17)
+```
+
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$activities, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$address, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$famsize, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$famsup, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$Fjob, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$guardian, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$higher, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$internet, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$Mjob, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$nursery, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$paid, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$Pstatus, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$reason, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$romantic, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$school, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$schoolsup, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Numerical Summaries: Dataset
+```{r}
+numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$sex, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Count Missing Cases: Dataset
+```{r}
+sapply(Dataset, function(x)(sum(is.na(x)))) # NA counts
+```
+
+
+
+### Table of Summary Statistics: studytime
+```{r}
+Tapply(studytime ~ reason, mean, na.action=na.omit, data=Dataset) # mean by groups
+```
+
+
+### Correlation Matrix: Dataset
+```{r}
+cor(Dataset[,c("absences","age","Dalc","failures","famrel","Fedu","freetime","G1","G2","G3","goout","health","Medu","studytime","traveltime","Walc")], use="complete")
+```
+
+
+### Normality Test: ~G3
+```{r}
+normalityTest(~G3, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~G2
+```{r}
+normalityTest(~G2, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~G1
+```{r}
+normalityTest(~G1, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~absences
+```{r}
+normalityTest(~absences, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~age
+```{r}
+normalityTest(~age, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~Dalc
+```{r}
+normalityTest(~Dalc, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~failures
+```{r}
+normalityTest(~failures, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~famrel
+```{r}
+normalityTest(~famrel, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~Fedu
+```{r}
+normalityTest(~Fedu, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~freetime
+```{r}
+normalityTest(~freetime, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~goout
+```{r}
+normalityTest(~goout, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~health
+```{r}
+normalityTest(~health, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~Medu
+```{r}
+normalityTest(~Medu, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~studytime
+```{r}
+normalityTest(~studytime, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~traveltime
+```{r}
+normalityTest(~traveltime, test="shapiro.test", data=Dataset)
+```
+
+
+### Normality Test: ~Walc
+```{r}
+normalityTest(~Walc, test="shapiro.test", data=Dataset)
+```
+
+
+### Linear Model: RegModel.1: G3~absences+age+Dalc+failures+famrel+Fedu+freetime+G1+G2+goout+health+Medu+studytime+traveltime+Walc
+```{r}
+RegModel.1 <- lm(G3~absences+age+Dalc+failures+famrel+Fedu+freetime+G1+G2+goout+health+Medu+studytime+traveltime+Walc, data=Dataset)
+summary(RegModel.1)
+```
+
+```{r}
+RegModel.2 <- lm(G3 ~ absences + age + famrel + G1 + G2, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.2)
+```
+
+```{r}
+RegModel.no_intercept <- lm(G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.no_intercept)
+```
+
+
+```{r}
+plot(RegModel.no_intercept$fitted.values, rstandard(RegModel.no_intercept),
+main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+```
+
+
+```{r}
+abline(h=0, col="red")
+```
+
+
+```{r}
+if (!require(lmtest)) install.packages("lmtest")
+```
+
+
+```{r}
+library(lmtest)
+```
+
+
+```{r}
+bp_test <- bptest(RegModel.no_intercept)
+```
+
+
+```{r}
+print(bp_test)
+```
+
+
+```{r}
+Dataset$log_G3 <- log(Dataset$G3 + 1)
+```
+
+
+```{r}
+RegModel.log <- lm(log_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.log)
+```
+
+
+```{r}
+plot(RegModel.log$fitted.values, rstandard(RegModel.log),
+main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+```
+
+
+```{r}
+abline(h=0, col="red")
+```
+
+
+```{r}
+RegModel.log.no_age <- lm(log_G3 ~ absences + famrel + G1 + G2 - 1, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.log.no_age)
+```
+
+
+```{r}
+AIC(RegModel.log, RegModel.log.no_age)
+```
+
+
+```{r}
+plot(RegModel.log$fitted.values, rstandard(RegModel.log),
+main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+```
+
+
+```{r}
+abline(h=0, col="red")
+```
+
+
+```{r}
+qqnorm(rstandard(RegModel.log))
+```
+
+
+```{r}
+qqline(rstandard(RegModel.log), col = "red")
+```
+
+
+```{r}
+if (!require(lmtest)) install.packages("lmtest")
+```
+
+
+```{r}
+library(lmtest)
+```
+
+
+```{r}
+bptest(RegModel.log)
+```
+
+
+```{r}
+bptest(RegModel.log.no_age)
+```
+
+```{r}
+abline(h=0, col="red")
+```
+
+
+```{r}
+qqnorm(rstandard(RegModel.log.no_age))
+```
+
+
+```{r}
+qqline(rstandard(RegModel.log.no_age), col = "red")
+```
+
+
+```{r}
+plot(RegModel.log.no_age$fitted.values, rstandard(RegModel.log.no_age),
+main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+```
+
+
+```{r}
+abline(h=0, col="red")
+```
+
+
+```{r}
+qqnorm(rstandard(RegModel.log.no_age))
+```
+
+
+```{r}
+qqline(rstandard(RegModel.log.no_age), col = "red")
+```
+
+
+```{r}
+plot(RegModel.log.no_age$fitted.values, rstandard(RegModel.log.no_age),
+main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+```
+
+
+```{r}
+abline(h=0, col="red")
+```
+
+
+```{r}
+qqnorm(rstandard(RegModel.log.no_age))
+```
+
+
+```{r}
+qqline(rstandard(RegModel.log.no_age), col = "red")
+```
+
+
+```{r}
+Dataset$sqrt_G3 <- sqrt(Dataset$G3)
+```
+
+
+```{r}
+RegModel.sqrt <- lm(sqrt_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.sqrt)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.sqrt)
+```
+
+
+```{r}
+bptest(RegModel.sqrt)
+```
+
+
+```{r}
+Dataset$inv_G3 <- 1 / Dataset$G3
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+Dataset$inv_G3 <- 1 / Dataset$G3
+```
+
+```{r}
+Dataset$inv_G3 <- 1 / (Dataset$G3+1)
+```
+
+
+```{r}
+RegModel.inv <- lm(inv_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.inv)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.inv)
+```
+
+
+```{r}
+bptest(RegModel.inv)
+```
+
+```{r}
+if (!require(HH)) install.packages("HH")
+```
+
+
+```{r}
+library(HH)
+```
+
+
+```{r}
+library(HH)
+```
+
+```{r}
+small_positive_value <- 0.001
+```
+
+
+```{r}
+Dataset$shifted_G3 <- Dataset$G3 + small_positive_value
+```
+
+
+```{r}
+power_transform <- powerTransform(Dataset[,"shifted_G3"])
+```
+
+
+```{r}
+optimal_lambda <- power_transform$lambda
+```
+
+
+```{r}
+optimal_lambda
+```
+
+
+```{r}
+Dataset$boxcox_G3 <- bcPower(Dataset[,"shifted_G3"], optimal_lambda)
+```
+
+
+```{r}
+RegModel.boxcox <- lm(boxcox_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.boxcox)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.boxcox)
+```
+
+
+```{r}
+bptest(RegModel.boxcox)
+```
+
+
+```{r}
+plot(RegModel.boxcox)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.boxcox)
+```
+
+
+```{r}
+boxplot(Dataset$G3, main="Boxplot of G3", ylab="G3")
+```
+
+
+```{r}
+Q1 <- quantile(Dataset$G3, 0.25)
+```
+
+
+```{r}
+Q3 <- quantile(Dataset$G3, 0.75)
+```
+
+
+```{r}
+IQR <- Q3 - Q1
+```
+
+
+```{r}
+lower_bound <- Q1 - 1.5 * IQR
+```
+
+
+```{r}
+upper_bound <- Q3 + 1.5 * IQR
+```
+
+
+```{r}
+outliers <- which(Dataset$G3 < lower_bound | Dataset$G3 > upper_bound)
+```
+
+
+```{r}
+print(outliers)
+```
+
+
+```{r}
+print(outliers)
+```
+
+
+```{r}
+RegModel.boxcox_no_G1 <- lm(boxcox_G3 ~ absences + age + famrel + G2 - 1, data=Dataset)
+```
+
+
+```{r}
+summary(RegModel.boxcox_no_G1)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.boxcox_no_G1)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.boxcox_no_G1)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.boxcox_no_G1)
+```
+
+
+```{r}
+if (!require(lmtest)) install.packages("lmtest")
+```
+
+
+```{r}
+library(lmtest)
+```
+
+
+```{r}
+bptest(RegModel.boxcox_no_G1)
+```
+
+
+```{r}
+residuals <- resid(RegModel.boxcox_no_G1)
+```
+
+
+```{r}
+weights <- 1 / (residuals^2)
+```
+
+
+```{r}
+RegModel.wls <- lm(boxcox_G3 ~ absences + age + famrel + G2 - 1, data=Dataset, weights=weights)
+```
+
+
+```{r}
+summary(RegModel.wls)
+```
+
+
+```{r}
+par(mfrow=c(2,2))
+```
+
+
+```{r}
+plot(RegModel.wls)
+```
+
+
+```{r}
+bptest(RegModel.wls)
+```
+
+
+```{r}
+bptest(RegModel.wls)
+```
+
+

@@ -1,0 +1,922 @@
+
+> Dataset <- readXL("C:/Users/BOUKA/OneDrive/Bureau/MUICE/AW/Chart-Studio/student+performance/student/mat.xlsx", 
++   rownames=FALSE, header=TRUE, na="", sheet="student-mat", stringsAsFactors=TRUE)
+
+> summary(Dataset)
+ school   sex          age       address famsize   Pstatus      Medu            Fedu             Mjob    
+ GP:349   F:208   Min.   :15.0   R: 88   GT3:281   A: 41   Min.   :0.000   Min.   :0.000   at_home : 59  
+ MS: 46   M:187   1st Qu.:16.0   U:307   LE3:114   T:354   1st Qu.:2.000   1st Qu.:2.000   health  : 34  
+                  Median :17.0                             Median :3.000   Median :2.000   other   :141  
+                  Mean   :16.7                             Mean   :2.749   Mean   :2.522   services:103  
+                  3rd Qu.:18.0                             3rd Qu.:4.000   3rd Qu.:3.000   teacher : 58  
+                  Max.   :22.0                             Max.   :4.000   Max.   :4.000                 
+       Fjob            reason      guardian     traveltime      studytime        failures      schoolsup famsup   
+ at_home : 20   course    :145   father: 90   Min.   :1.000   Min.   :1.000   Min.   :0.0000   no :344   no :153  
+ health  : 18   home      :109   mother:273   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:0.0000   yes: 51   yes:242  
+ other   :217   other     : 36   other : 32   Median :1.000   Median :2.000   Median :0.0000                      
+ services:111   reputation:105                Mean   :1.448   Mean   :2.035   Mean   :0.3342                      
+ teacher : 29                                 3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:0.0000                      
+                                              Max.   :4.000   Max.   :4.000   Max.   :3.0000                      
+  paid     activities nursery   higher    internet  romantic      famrel         freetime         goout      
+ no :214   no :194    no : 81   no : 20   no : 66   no :263   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ yes:181   yes:201    yes:314   yes:375   yes:329   yes:132   1st Qu.:4.000   1st Qu.:3.000   1st Qu.:2.000  
+                                                              Median :4.000   Median :3.000   Median :3.000  
+                                                              Mean   :3.944   Mean   :3.235   Mean   :3.109  
+                                                              3rd Qu.:5.000   3rd Qu.:4.000   3rd Qu.:4.000  
+                                                              Max.   :5.000   Max.   :5.000   Max.   :5.000  
+      Dalc            Walc           health         absences            G1              G2              G3       
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   : 0.000   Min.   : 3.00   Min.   : 0.00   Min.   : 0.00  
+ 1st Qu.:1.000   1st Qu.:1.000   1st Qu.:3.000   1st Qu.: 0.000   1st Qu.: 8.00   1st Qu.: 9.00   1st Qu.: 8.00  
+ Median :1.000   Median :2.000   Median :4.000   Median : 4.000   Median :11.00   Median :11.00   Median :11.00  
+ Mean   :1.481   Mean   :2.291   Mean   :3.554   Mean   : 5.709   Mean   :10.91   Mean   :10.71   Mean   :10.42  
+ 3rd Qu.:2.000   3rd Qu.:3.000   3rd Qu.:5.000   3rd Qu.: 8.000   3rd Qu.:13.00   3rd Qu.:13.00   3rd Qu.:14.00  
+ Max.   :5.000   Max.   :5.000   Max.   :5.000   Max.   :75.000   Max.   :19.00   Max.   :19.00   Max.   :20.00  
+
+> library(abind, pos=16)
+
+> library(e1071, pos=17)
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$activities, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+        mean       sd IQR 0% 25% 50% 75% 100% G3:n
+no  10.34021 4.488065   5  0   8  11  13   19  194
+yes 10.48756 4.679861   5  0   9  11  14   20  201
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$address, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+       mean       sd IQR 0% 25% 50% 75% 100% G3:n
+R  9.511364 4.556149   5  0   7  10  12   19   88
+U 10.674267 4.563075   5  0   9  11  14   20  307
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$famsize, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+        mean       sd  IQR 0% 25% 50%   75% 100% G3:n
+GT3 10.17794 4.704520 6.00  0   8  11 14.00   20  281
+LE3 11.00000 4.225921 4.75  0   9  11 13.75   19  114
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$famsup, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+        mean       sd IQR 0% 25% 50% 75% 100% G3:n
+no  10.64052 4.636262   5  0   9  11  14   20  153
+yes 10.27273 4.550318   5  0   8  11  13   19  242
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$Fjob, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+             mean       sd IQR 0%   25% 50%   75% 100% G3:n
+at_home  10.15000 5.323978 4.5  0  8.75  11 13.25   19   20
+health   11.61111 3.238353 5.0  7  9.00  11 14.00   18   18
+other    10.19355 4.511236 5.0  0  8.00  11 13.00   19  217
+services 10.29730 4.477407 4.0  0  9.00  11 13.00   20  111
+teacher  11.96552 5.486885 6.0  0 10.00  14 16.00   19   29
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$guardian, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+           mean       sd IQR 0% 25%  50% 75% 100% G3:n
+father 10.68889 4.463697   5  0   9 11.0  14   18   90
+mother 10.48352 4.597064   6  0   8 11.0  14   20  273
+other   9.06250 4.689986   4  0   8  9.5  12   18   32
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$higher, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+      mean       sd IQR 0% 25% 50% 75% 100% G3:n
+no   6.800 4.829732  10  0   0   8  10   13   20
+yes 10.608 4.493422   5  0   9  11  14   20  375
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$internet, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+         mean       sd  IQR 0%  25% 50% 75% 100% G3:n
+no   9.409091 4.485797 4.75  0 7.25  10  12   18   66
+yes 10.617021 4.580494 5.00  0 9.00  11  14   20  329
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$Mjob, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+              mean       sd IQR 0% 25% 50%  75% 100% G3:n
+at_home   9.152542 4.733642 4.5  0   8  10 12.5   19   59
+health   12.147059 4.229280 5.0  0  10  13 15.0   20   34
+other     9.822695 4.359364 5.0  0   8  11 13.0   19  141
+services 11.019417 4.758853 5.5  0   9  11 14.5   19  103
+teacher  11.051724 4.398654 5.0  0   9  11 14.0   19   58
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$nursery, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+         mean       sd IQR 0% 25% 50% 75% 100% G3:n
+no   9.950617 4.560431   5  0   8  11  13   18   81
+yes 10.535032 4.586449   6  0   8  11  14   20  314
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$paid, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+         mean       sd IQR 0% 25% 50% 75% 100% G3:n
+no   9.985981 5.126090   6  0   8  11  14   20  214
+yes 10.922652 3.791011   4  0   9  11  13   19  181
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$Pstatus, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+      mean       sd IQR 0% 25% 50% 75% 100% G3:n
+A 11.19512 4.290801   4  0   9  11  13   19   41
+T 10.32486 4.611121   6  0   8  11  14   20  354
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$reason, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+               mean       sd  IQR 0%  25% 50% 75% 100% G3:n
+course      9.82069 4.878623 5.00  0 8.00  10  13   19  145
+home       10.25688 4.643601 5.00  0 8.00  11  13   19  109
+other      11.16667 3.760699 3.25  0 9.75  11  13   19   36
+reputation 11.14286 4.261700 5.00  0 9.00  11  14   20  105
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$romantic, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+         mean       sd IQR 0% 25% 50% 75% 100% G3:n
+no  10.836502 4.385946   5  0   9  11  14   20  263
+yes  9.575758 4.856916   5  0   8  11  13   18  132
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$school, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+        mean       sd  IQR 0% 25% 50%   75% 100% G3:n
+GP 10.489971 4.625397 6.00  0   8  11 14.00   20  349
+MS  9.847826 4.237229 4.75  0   8  10 12.75   19   46
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$schoolsup, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+         mean       sd IQR 0% 25% 50% 75% 100% G3:n
+no  10.561047 4.769533   5  0   9  11  14   20  344
+yes  9.431373 2.865344   3  0   8  10  11   17   51
+
+> numSummary(Dataset[,"G3", drop=FALSE], groups=Dataset$sex, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+       mean       sd IQR 0% 25% 50% 75% 100% G3:n
+F  9.966346 4.622338   5  0   8  10  13   19  208
+M 10.914439 4.495297   5  0   9  11  14   20  187
+
+> sapply(Dataset, function(x)(sum(is.na(x)))) # NA counts
+    school        sex        age    address    famsize    Pstatus       Medu       Fedu       Mjob       Fjob     reason   guardian traveltime  studytime   failures  schoolsup 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+    famsup       paid activities    nursery     higher   internet   romantic     famrel   freetime      goout       Dalc       Walc     health   absences         G1         G2 
+         0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0 
+        G3 
+         0 
+
+> Tapply(studytime ~ reason, mean, na.action=na.omit, data=Dataset) # mean by groups
+    course       home      other reputation 
+  1.951724   1.981651   1.750000   2.304762 
+
+> cor(Dataset[,c("absences","age","Dalc","failures","famrel","Fedu","freetime","G1","G2","G3","goout","health","Medu","studytime","traveltime","Walc")], use="complete")
+              absences          age         Dalc    failures       famrel         Fedu    freetime          G1          G2          G3        goout       health         Medu
+absences    1.00000000  0.175230079  0.111908026  0.06372583 -0.044354095  0.024472887 -0.05807792 -0.03100290 -0.03177670  0.03424732  0.044302220 -0.029936711  0.100284818
+age         0.17523008  1.000000000  0.131124605  0.24366538  0.053940096 -0.163438069  0.01643439 -0.06408150 -0.14347405 -0.16157944  0.126963880 -0.062187369 -0.163658419
+Dalc        0.11190803  0.131124605  1.000000000  0.13604693 -0.077594357  0.002386429  0.20900085 -0.09415879 -0.06412018 -0.05466004  0.266993848  0.077179582  0.019834099
+failures    0.06372583  0.243665377  0.136046931  1.00000000 -0.044336626 -0.250408444  0.09198747 -0.35471761 -0.35589563 -0.36041494  0.124560922  0.065827282 -0.236679963
+famrel     -0.04435409  0.053940096 -0.077594357 -0.04433663  1.000000000 -0.001369727  0.15070144  0.02216832 -0.01828135  0.05136343  0.064568411  0.094055728 -0.003914458
+Fedu        0.02447289 -0.163438069  0.002386429 -0.25040844 -0.001369727  1.000000000 -0.01284553  0.19026994  0.16489339  0.15245694  0.043104668  0.014741537  0.623455112
+freetime   -0.05807792  0.016434389  0.209000848  0.09198747  0.150701444 -0.012845528  1.00000000  0.01261293 -0.01377714  0.01130724  0.285018715  0.075733357  0.030890867
+G1         -0.03100290 -0.064081497 -0.094158792 -0.35471761  0.022168316  0.190269936  0.01261293  1.00000000  0.85211807  0.80146793 -0.149103967 -0.073172073  0.205340997
+G2         -0.03177670 -0.143474049 -0.064120183 -0.35589563 -0.018281347  0.164893393 -0.01377714  0.85211807  1.00000000  0.90486799 -0.162250034 -0.097719866  0.215527168
+G3          0.03424732 -0.161579438 -0.054660041 -0.36041494  0.051363429  0.152456939  0.01130724  0.80146793  0.90486799  1.00000000 -0.132791474 -0.061334605  0.217147496
+goout       0.04430222  0.126963880  0.266993848  0.12456092  0.064568411  0.043104668  0.28501871 -0.14910397 -0.16225003 -0.13279147  1.000000000 -0.009577254  0.064094438
+health     -0.02993671 -0.062187369  0.077179582  0.06582728  0.094055728  0.014741537  0.07573336 -0.07317207 -0.09771987 -0.06133460 -0.009577254  1.000000000 -0.046877829
+Medu        0.10028482 -0.163658419  0.019834099 -0.23667996 -0.003914458  0.623455112  0.03089087  0.20534100  0.21552717  0.21714750  0.064094438 -0.046877829  1.000000000
+studytime  -0.06270018 -0.004140037 -0.196019263 -0.17356303  0.039730704 -0.009174639 -0.14319841  0.16061192  0.13588000  0.09781969 -0.063903675 -0.075615863  0.064944137
+traveltime -0.01294378  0.070640721  0.138325309  0.09223875 -0.016807986 -0.158194054 -0.01702494 -0.09303999 -0.15319796 -0.11714205  0.028539674  0.007500606 -0.171639305
+Walc        0.13629110  0.117276052  0.647544230  0.14196203 -0.113397308 -0.012631018  0.14782181 -0.12617921 -0.08492735 -0.05193932  0.420385745  0.092476317 -0.047123460
+              studytime   traveltime        Walc
+absences   -0.062700175 -0.012943775  0.13629110
+age        -0.004140037  0.070640721  0.11727605
+Dalc       -0.196019263  0.138325309  0.64754423
+failures   -0.173563031  0.092238746  0.14196203
+famrel      0.039730704 -0.016807986 -0.11339731
+Fedu       -0.009174639 -0.158194054 -0.01263102
+freetime   -0.143198407 -0.017024944  0.14782181
+G1          0.160611915 -0.093039992 -0.12617921
+G2          0.135879999 -0.153197963 -0.08492735
+G3          0.097819690 -0.117142053 -0.05193932
+goout      -0.063903675  0.028539674  0.42038575
+health     -0.075615863  0.007500606  0.09247632
+Medu        0.064944137 -0.171639305 -0.04712346
+studytime   1.000000000 -0.100909119 -0.25378473
+traveltime -0.100909119  1.000000000  0.13411575
+Walc       -0.253784731  0.134115752  1.00000000
+
+> normalityTest(~G3, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  G3
+W = 0.92873, p-value = 8.836e-13
+
+
+> normalityTest(~G2, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  G2
+W = 0.96914, p-value = 0.0000002084
+
+
+> normalityTest(~G1, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  G1
+W = 0.97491, p-value = 0.000002454
+
+
+> normalityTest(~absences, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  absences
+W = 0.66683, p-value < 2.2e-16
+
+
+> normalityTest(~age, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  age
+W = 0.91059, p-value = 1.589e-14
+
+
+> normalityTest(~Dalc, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  Dalc
+W = 0.59784, p-value < 2.2e-16
+
+
+> normalityTest(~failures, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  failures
+W = 0.50707, p-value < 2.2e-16
+
+
+> normalityTest(~famrel, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  famrel
+W = 0.83023, p-value < 2.2e-16
+
+
+> normalityTest(~Fedu, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  Fedu
+W = 0.87555, p-value < 2.2e-16
+
+
+> normalityTest(~freetime, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  freetime
+W = 0.90611, p-value = 6.427e-15
+
+
+> normalityTest(~goout, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  goout
+W = 0.91002, p-value = 1.413e-14
+
+
+> normalityTest(~health, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  health
+W = 0.84865, p-value < 2.2e-16
+
+
+> normalityTest(~Medu, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  Medu
+W = 0.86103, p-value < 2.2e-16
+
+
+> normalityTest(~studytime, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  studytime
+W = 0.8342, p-value < 2.2e-16
+
+
+> normalityTest(~traveltime, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  traveltime
+W = 0.65921, p-value < 2.2e-16
+
+
+> normalityTest(~Walc, test="shapiro.test", data=Dataset)
+
+	Shapiro-Wilk normality test
+
+data:  Walc
+W = 0.84702, p-value < 2.2e-16
+
+
+> RegModel.1 <- lm(G3~absences+age+Dalc+failures+famrel+Fedu+freetime+G1+G2+goout+health+Medu+studytime+traveltime+Walc, data=Dataset)
+
+> summary(RegModel.1)
+
+Call:
+lm(formula = G3 ~ absences + age + Dalc + failures + famrel + 
+    Fedu + freetime + G1 + G2 + goout + health + Medu + studytime + 
+    traveltime + Walc, data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.6597 -0.4033  0.2559  0.9736  4.0970 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.6689158  1.5411303  -0.434 0.664505    
+absences     0.0414289  0.0123309   3.360 0.000859 ***
+age         -0.1815062  0.0808776  -2.244 0.025396 *  
+Dalc        -0.1204910  0.1431980  -0.841 0.400638    
+failures    -0.2321985  0.1457021  -1.594 0.111847    
+famrel       0.3516407  0.1096758   3.206 0.001459 ** 
+Fedu        -0.1404233  0.1143700  -1.228 0.220285    
+freetime     0.0537032  0.1037476   0.518 0.605016    
+G1           0.1590346  0.0566607   2.807 0.005262 ** 
+G2           0.9743079  0.0502614  19.385  < 2e-16 ***
+goout        0.0004457  0.1003632   0.004 0.996459    
+health       0.0555571  0.0700899   0.793 0.428475    
+Medu         0.1069982  0.1152672   0.928 0.353862    
+studytime   -0.1362063  0.1208403  -1.127 0.260388    
+traveltime   0.1270661  0.1420398   0.895 0.371579    
+Walc         0.1545526  0.1067973   1.447 0.148679    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.881 on 379 degrees of freedom
+Multiple R-squared:  0.8378,	Adjusted R-squared:  0.8314 
+F-statistic: 130.5 on 15 and 379 DF,  p-value: < 2.2e-16
+
+
+> RegModel.2 <- lm(G3 ~ absences + age + famrel + G1 + G2, data=Dataset)
+
+> summary(RegModel.2)
+
+Call:
+lm(formula = G3 ~ absences + age + famrel + G1 + G2, data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.0811 -0.4081  0.2733  0.9927  3.7111 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.07765    1.37626  -0.056 0.955033    
+absences     0.04365    0.01205   3.623 0.000329 ***
+age         -0.20167    0.07679  -2.626 0.008978 ** 
+famrel       0.35725    0.10622   3.363 0.000847 ***
+G1           0.15794    0.05503   2.870 0.004329 ** 
+G2           0.97804    0.04895  19.981  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.881 on 389 degrees of freedom
+Multiple R-squared:  0.8336,	Adjusted R-squared:  0.8315 
+F-statistic: 389.8 on 5 and 389 DF,  p-value: < 2.2e-16
+
+
+> summary(RegModel.no_intercept)
+
+> RegModel.no_intercept <- lm(G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.no_intercept)
+
+Call:
+lm(formula = G3 ~ absences + age + famrel + G1 + G2 - 1, data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-9.0762 -0.4086  0.2750  0.9943  3.7169 
+
+Coefficients:
+         Estimate Std. Error t value Pr(>|t|)    
+absences  0.04372    0.01198   3.650 0.000298 ***
+age      -0.20566    0.02973  -6.917  1.9e-11 ***
+famrel    0.35573    0.10264   3.466 0.000587 ***
+G1        0.15798    0.05496   2.875 0.004268 ** 
+G2        0.97754    0.04807  20.336  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.878 on 390 degrees of freedom
+Multiple R-squared:  0.9731,	Adjusted R-squared:  0.9727 
+F-statistic:  2819 on 5 and 390 DF,  p-value: < 2.2e-16
+
+
+> plot(RegModel.no_intercept$fitted.values, rstandard(RegModel.no_intercept),
++      main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+
+> abline(h=0, col="red")
+
+> if (!require(lmtest)) install.packages("lmtest")
+
+> library(lmtest)
+
+> bp_test <- bptest(RegModel.no_intercept)
+
+> print(bp_test)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.no_intercept
+BP = 35.597, df = 4, p-value = 0.0000003501
+
+
+> Dataset$log_G3 <- log(Dataset$G3 + 1)  # Adding 1 to handle zero values if present
+
+> RegModel.log <- lm(log_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.log)
+
+Call:
+lm(formula = log_G3 ~ absences + age + famrel + G1 + G2 - 1, 
+    data = Dataset)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.12136 -0.09195  0.10282  0.28051  0.74160 
+
+Coefficients:
+          Estimate Std. Error t value     Pr(>|t|)    
+absences  0.017256   0.003171   5.442 0.0000000934 ***
+age       0.013886   0.007871   1.764      0.07849 .  
+famrel    0.085217   0.027172   3.136      0.00184 ** 
+G1       -0.045496   0.014549  -3.127      0.00190 ** 
+G2        0.194001   0.012725  15.246      < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4973 on 390 degrees of freedom
+Multiple R-squared:  0.957,	Adjusted R-squared:  0.9565 
+F-statistic:  1737 on 5 and 390 DF,  p-value: < 2.2e-16
+
+
+> # Residuals vs Fitted plot
+
+> plot(RegModel.log$fitted.values, rstandard(RegModel.log),
++      main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+
+> abline(h=0, col="red")
+
+>  
+
+> RegModel.log.no_age <- lm(log_G3 ~ absences + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.log.no_age)
+
+Call:
+lm(formula = log_G3 ~ absences + famrel + G1 + G2 - 1, data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.0779 -0.1128  0.1139  0.2936  0.7784 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+absences  0.018557   0.003092   6.001 4.48e-09 ***
+famrel    0.121749   0.017639   6.902 2.07e-11 ***
+G1       -0.038836   0.014089  -2.756  0.00612 ** 
+G2        0.194044   0.012759  15.208  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4986 on 391 degrees of freedom
+Multiple R-squared:  0.9567,	Adjusted R-squared:  0.9562 
+F-statistic:  2159 on 4 and 391 DF,  p-value: < 2.2e-16
+
+
+> AIC(RegModel.log, RegModel.log.no_age)
+                    df      AIC
+RegModel.log         6 576.0204
+RegModel.log.no_age  5 577.1599
+
+> # Residuals vs Fitted plot
+
+> plot(RegModel.log$fitted.values, rstandard(RegModel.log),
++      main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+
+> abline(h=0, col="red")
+
+>  
+
+> # Normal Q-Q plot
+
+> qqnorm(rstandard(RegModel.log))
+
+> qqline(rstandard(RegModel.log), col = "red")
+
+>  
+
+> # Breusch-Pagan test for homoscedasticity
+
+> if (!require(lmtest)) install.packages("lmtest")
+
+> library(lmtest)
+
+> bptest(RegModel.log)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.log
+BP = 41.099, df = 4, p-value = 0.00000002563
+
+
+> bptest(RegModel.log.no_age)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.log.no_age
+BP = 11.914, df = 3, p-value = 0.007682
+
+
+> # Residuals vs Fitted plot
+
+> plot(RegModel.log.no_ge$fitted.values, rstandard(RegModel.log.no_age),
++      main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+
+> abline(h=0, col="red")
+
+>  
+
+> # Normal Q-Q plot
+
+> qqnorm(rstandard(RegModel.log.no_age))
+
+> qqline(rstandard(RegModel.log.no_age), col = "red")
+
+> # Residuals vs Fitted plot
+
+> plot(RegModel.log.no_age$fitted.values, rstandard(RegModel.log.no_age),
++      main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+
+> abline(h=0, col="red")
+
+>  
+
+> # Normal Q-Q plot
+
+> qqnorm(rstandard(RegModel.log.no_age))
+
+> qqline(rstandard(RegModel.log.no_age), col = "red")
+
+> # Residuals vs Fitted plot
+
+> plot(RegModel.log.no_age$fitted.values, rstandard(RegModel.log.no_age),
++      main="Residuals vs Fitted", xlab="Fitted values", ylab="Standardized residuals")
+
+> abline(h=0, col="red")
+
+>  
+
+> # Normal Q-Q plot
+
+> qqnorm(rstandard(RegModel.log.no_age))
+
+> qqline(rstandard(RegModel.log.no_age), col = "red")
+
+> # Square root transformation of the dependent variable
+
+> Dataset$sqrt_G3 <- sqrt(Dataset$G3)
+
+>  
+
+> # Fit the model with the square root transformed variable
+
+> RegModel.sqrt <- lm(sqrt_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.sqrt)
+
+Call:
+lm(formula = sqrt_G3 ~ absences + age + famrel + G1 + G2 - 1, 
+    data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.8049 -0.1121  0.1217  0.3508  0.9438 
+
+Coefficients:
+          Estimate Std. Error t value    Pr(>|t|)    
+absences  0.021092   0.004044   5.216 0.000000298 ***
+age       0.002170   0.010038   0.216     0.82896    
+famrel    0.112533   0.034652   3.248     0.00126 ** 
+G1       -0.038686   0.018555  -2.085     0.03772 *  
+G2        0.266383   0.016228  16.415     < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.6342 on 390 degrees of freedom
+Multiple R-squared:  0.9619,	Adjusted R-squared:  0.9614 
+F-statistic:  1968 on 5 and 390 DF,  p-value: < 2.2e-16
+
+
+>  
+
+> # Check diagnostics
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.sqrt)
+
+> bptest(RegModel.sqrt)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.sqrt
+BP = 39.791, df = 4, p-value = 0.00000004781
+
+
+> # Inverse transformation of the dependent variable
+
+> Dataset$inv_G3 <- 1 / Dataset$G3
+
+>  
+
+> # Fit the model with the inverse transformed variable
+
+> RegModel.inv <- lm(inv_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.inv)
+
+>  
+
+> # Check diagnostics
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.inv)
+
+> bptest(RegModel.inv)
+
+> Dataset$inv_G3 <- 1 / Dataset$G3
+
+> RegModel.inv <- lm(inv_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.inv)
+
+> RegModel.inv <- lm(inv_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> Dataset$inv_G3 <- 1 / (Dataset$G3+1)
+
+> RegModel.inv <- lm(inv_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.inv)
+
+Call:
+lm(formula = inv_G3 ~ absences + age + famrel + G1 + G2 - 1, 
+    data = Dataset)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.35295 -0.12716 -0.03193  0.05923  0.82530 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+absences -0.008628   0.001316  -6.555 1.77e-10 ***
+age       0.036562   0.003267  11.190  < 2e-16 ***
+famrel   -0.013565   0.011279  -1.203     0.23    
+G1        0.029634   0.006040   4.906 1.36e-06 ***
+G2       -0.061560   0.005282 -11.654  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2064 on 390 degrees of freedom
+Multiple R-squared:  0.5933,	Adjusted R-squared:  0.588 
+F-statistic: 113.8 on 5 and 390 DF,  p-value: < 2.2e-16
+
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.inv)
+
+> bptest(RegModel.inv)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.inv
+BP = 52.912, df = 4, p-value = 8.89e-11
+
+
+> power_transform <- powerTransform(Dataset[,"G3"])
+
+> optimal_lambda <- power_transform$lambda
+
+> optimal_lambda
+
+> power_transform <- powerTransform(Dataset[,"G3"])
+
+> library(HH)
+
+> library(HH)
+
+> if (!require(HH)) install.packages("HH")
+--- Please select a CRAN mirror for use in this session ---
+package 'deldir' successfully unpacked and MD5 sums checked
+package 'png' successfully unpacked and MD5 sums checked
+package 'jpeg' successfully unpacked and MD5 sums checked
+package 'interp' successfully unpacked and MD5 sums checked
+package 'plyr' successfully unpacked and MD5 sums checked
+package 'httpuv' successfully unpacked and MD5 sums checked
+package 'xtable' successfully unpacked and MD5 sums checked
+package 'sourcetools' successfully unpacked and MD5 sums checked
+package 'later' successfully unpacked and MD5 sums checked
+package 'promises' successfully unpacked and MD5 sums checked
+package 'gmp' successfully unpacked and MD5 sums checked
+package 'latticeExtra' successfully unpacked and MD5 sums checked
+package 'reshape2' successfully unpacked and MD5 sums checked
+package 'vcd' successfully unpacked and MD5 sums checked
+package 'shiny' successfully unpacked and MD5 sums checked
+package 'Rmpfr' successfully unpacked and MD5 sums checked
+package 'HH' successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\BOUKA\AppData\Local\Temp\Rtmp4CNa4m\downloaded_packages
+
+> library(HH)
+
+> library(HH)
+
+> power_transform <- powerTransform(Dataset[,"G3"])
+
+> small_positive_value <- 0.001
+
+> Dataset$shifted_G3 <- Dataset$G3 + small_positive_value
+
+> power_transform <- powerTransform(Dataset[,"shifted_G3"])
+
+> optimal_lambda <- power_transform$lambda
+
+> optimal_lambda
+Dataset[, "shifted_G3"] 
+              0.7300811 
+
+> Dataset$boxcox_G3 <- bcPower(Dataset[,"shifted_G3"], optimal_lambda)
+
+> RegModel.boxcox <- lm(boxcox_G3 ~ absences + age + famrel + G1 + G2 - 1, data=Dataset)
+
+> summary(RegModel.boxcox)
+
+Call:
+lm(formula = boxcox_G3 ~ absences + age + famrel + G1 + G2 - 
+    1, data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.4376 -0.2657  0.2450  0.7030  2.5332 
+
+Coefficients:
+          Estimate Std. Error t value     Pr(>|t|)    
+absences  0.042286   0.008950   4.725 0.0000032228 ***
+age      -0.134288   0.022216  -6.045 0.0000000035 ***
+famrel    0.233634   0.076692   3.046      0.00247 ** 
+G1        0.002532   0.041065   0.062      0.95088    
+G2        0.653405   0.035916  18.192      < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.404 on 390 degrees of freedom
+Multiple R-squared:  0.9554,	Adjusted R-squared:  0.9548 
+F-statistic:  1671 on 5 and 390 DF,  p-value: < 2.2e-16
+
+
+> par(mfrow=c(2,2))
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.boxcox)
+
+> bptest(RegModel.boxcox)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.boxcox
+BP = 37.689, df = 4, p-value = 0.0000001299
+
+
+> plot(RegModel.boxcox)
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.boxcox)
+
+> boxplot(Dataset$G3, main="Boxplot of G3", ylab="G3")
+
+> Q1 <- quantile(Dataset$G3, 0.25)
+
+> Q3 <- quantile(Dataset$G3, 0.75)
+
+> IQR <- Q3 - Q1
+
+> # Define the lower and upper bounds for outliers
+
+> lower_bound <- Q1 - 1.5 * IQR
+
+> upper_bound <- Q3 + 1.5 * IQR
+
+> outliers <- which(Dataset$G3 < lower_bound | Dataset$G3 > upper_bound)
+
+> print(outliers)
+integer(0)
+
+> print(outliers)
+integer(0)
+
+> RegModel.boxcox_no_G1 <- lm(boxcox_G3 ~ absences + age + famrel + G2 - 1, data=Dataset)
+
+> summary(RegModel.boxcox_no_G1)
+
+Call:
+lm(formula = boxcox_G3 ~ absences + age + famrel + G2 - 1, data = Dataset)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.4391 -0.2569  0.2406  0.7014  2.5298 
+
+Coefficients:
+          Estimate Std. Error t value      Pr(>|t|)    
+absences  0.042274   0.008936   4.730 0.00000313355 ***
+age      -0.133933   0.021428  -6.250 0.00000000107 ***
+famrel    0.233939   0.076434   3.061       0.00236 ** 
+G2        0.655323   0.017904  36.602       < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.402 on 391 degrees of freedom
+Multiple R-squared:  0.9554,	Adjusted R-squared:  0.9549 
+F-statistic:  2094 on 4 and 391 DF,  p-value: < 2.2e-16
+
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.boxcox_no_G1)
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.boxcox_no_G1)
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.boxcox_no_G1)
+
+> if (!require(lmtest)) install.packages("lmtest")
+
+> library(lmtest)
+
+> bptest(RegModel.boxcox_no_G1)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.boxcox_no_G1
+BP = 31.629, df = 3, p-value = 0.0000006266
+
+
+> residuals <- resid(RegModel.boxcox_no_G1)
+
+> weights <- 1 / (residuals^2)
+
+> # Fit the WLS model using the computed weights
+
+> RegModel.wls <- lm(boxcox_G3 ~ absences + age + famrel + G2 - 1, data=Dataset, weights=weights)
+
+> summary(RegModel.wls)
+
+Call:
+lm(formula = boxcox_G3 ~ absences + age + famrel + G2 - 1, data = Dataset, 
+    weights = weights)
+
+Weighted Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.3972 -1.0000  0.9790  0.9972  1.0869 
+
+Coefficients:
+          Estimate Std. Error t value Pr(>|t|)    
+absences  0.042932   0.001268   33.85   <2e-16 ***
+age      -0.133211   0.001774  -75.08   <2e-16 ***
+famrel    0.228213   0.007234   31.55   <2e-16 ***
+G2        0.656334   0.001878  349.54   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.9994 on 391 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:      1 
+F-statistic: 2.263e+06 on 4 and 391 DF,  p-value: < 2.2e-16
+
+
+> # Check diagnostics for the WLS model
+
+> par(mfrow=c(2,2))
+
+> plot(RegModel.wls)
+
+> bptest(RegModel.wls)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.wls
+BP = 5647.6, df = 3, p-value < 2.2e-16
+
+
+> bptest(RegModel.wls)
+
+	studentized Breusch-Pagan test
+
+data:  RegModel.wls
+BP = 5647.6, df = 3, p-value < 2.2e-16
+
+
