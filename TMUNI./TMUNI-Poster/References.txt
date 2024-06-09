@@ -1,0 +1,15 @@
+[1] Paolo Toccaceli. Introduction to conformal predictors. Pattern Recognition, 124:108507, 2022.
+
+[2] Alexander Gammerman and Vladimir Vovk. Hedging predictions in machine learning. The Computer
+Journal, 50(2):151–163, 2007.
+
+[3] Paolo Toccaceli and Alexander Gammerman.
+Combination of inductive mondrian conformal predictors. Machine Learning, 108:489–510, 2019.
+
+[4] Victor Chang, Jozeene Bailey, Qianwen Ariel Xu,
+and Zhili Sun. Pima indians diabetes mellitus classification based on machine learning (ml) algorithms. Neural Computing and Applications, 35
+(22):16157–16173, 2023.
+
+[5] Mabrouka Salmi. Conformal prediction for imbalanced data, 2023. URL
+https://github.com/Bouka12/ConformalPrediction-for-Imbalanced-data. GitHub
+repository.
